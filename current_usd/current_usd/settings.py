@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api.apps.ApiConfig',
+    'currency_rate.apps.CurrencyRateConfig',
 ]
 
 MIDDLEWARE = [
