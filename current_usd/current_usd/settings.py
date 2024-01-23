@@ -15,9 +15,12 @@ DEBUG = env.bool('DEBUG', default=True)
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=['127.0.0.1'])
 
+API_KEY = env('API_KEY', default='key')
+
 print(SECRET_KEY)
 print(DEBUG)
 print(ALLOWED_HOSTS)
+print(API_KEY)
 
 # Application definition
 
