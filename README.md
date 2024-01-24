@@ -1,3 +1,4 @@
+
 # Проект "Current_usd". Написан в качестве тестового задания для [Photo Point](https://www.photo-point.ru/)
 
 ### Описание задания:
