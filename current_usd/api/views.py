@@ -1,18 +1,21 @@
-from rest_framework import viewsets
-from currency_rate.models import CurrencyRate
-from constants import CACHE_TIME, CURRENCY, PAST_RATES_NUM
-from .serializers import RatesSerializer
-from .utils import get_actual_rate
-from rest_framework.response import Response
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
+from rest_framework import viewsets
+from rest_framework.response import Response
+
+from constants import CACHE_TIME, CURRENCY, PAST_RATES_NUM
+from currency_rate.models import CurrencyRate
+
+from .serializers import RatesSerializer
+from .utils import get_actual_rate
 
 
 class CurrentUsdViewSet(viewsets.ViewSet):
     """
-    Вьюсет для запроса текущего курса доллара и отображение
-    вместе с предыдущими курсами.
+    Вьюсет для запроса текущего курса доллара, записи в БД
+    и вывода вместе с предыдущими курсами.
     """
+
     @method_decorator(cache_page(CACHE_TIME))
     def list(self, request):
         print("-------------Делаем запрос курса доллара----------------------")
