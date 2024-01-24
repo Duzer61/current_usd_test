@@ -1,5 +1,5 @@
-from rest_framework import serializers
 from currency_rate.models import CurrencyRate
+from rest_framework import serializers
 
 
 class RatesSerializer(serializers.ModelSerializer):

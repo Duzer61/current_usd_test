@@ -2,8 +2,9 @@ from http import HTTPStatus
 
 import requests
 from constants import CURRENCY, TIMEOUT, URL
-from .exceptions import StatusCodeNotOk
 from django.conf import settings
+
+from .exceptions import StatusCodeNotOk
 
 
 def get_api_answer(currency):
@@ -55,15 +56,13 @@ def check_response(response, currency):
 
 def get_actual_rate():
     """
-    Возвращает актуальный курс доллара к выбранной валюте.
+    Возвращает актуальный курс доллара к выбранной валюте
+    или сообщение об ошибке.
     """
 
     try:
         response = get_api_answer(CURRENCY)
         rate = check_response(response, CURRENCY)
     except Exception as error:
-        print(error)
-        print('А теперь в строку')
-        print(str(error))
         return str(error)
     return rate
