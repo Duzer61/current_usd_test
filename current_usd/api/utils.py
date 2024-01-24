@@ -25,6 +25,7 @@ def get_api_answer(currency):
 def check_response(response, currency):
     """
     Проверяет ответ API на корректность.
+    Возвращает курс или сообщение об ошибке.
     """
 
     if not isinstance(response, dict):

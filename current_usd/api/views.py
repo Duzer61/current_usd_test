@@ -18,19 +18,16 @@ class CurrentUsdViewSet(viewsets.ViewSet):
 
     @method_decorator(cache_page(CACHE_TIME))
     def list(self, request):
-        print("-------------Делаем запрос курса доллара----------------------")
         past_data = (
             CurrencyRate.objects.filter(currency=CURRENCY)[:PAST_RATES_NUM]
         )
         serialized_past_data = RatesSerializer(past_data, many=True).data
         rate = get_actual_rate()
         if isinstance(rate, float):
-            print('Получен текущий курс доллара:', rate)
             CurrencyRate.objects.create(currency=CURRENCY, rate=rate)
             current_result = rate
         else:
             current_result = {'error': rate}
-        print("Сейчас вернем результат")
         return Response({
             'currency': CURRENCY,
             'current_rate': current_result,
